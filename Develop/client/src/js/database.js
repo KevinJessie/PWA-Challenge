@@ -13,7 +13,7 @@ const initdb = async () =>
   });
 
 //  Add logic to a method that accepts some content and adds it to the database
-export const addDb = async (content) => console.error('addDb not implemented');
+export const addDb = async (_content) => console.error('addDb not implemented');
 
 
 // TODO: Add logic for a method that gets all the content from the database
