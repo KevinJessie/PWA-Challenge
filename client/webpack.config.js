@@ -15,7 +15,7 @@ module.exports = () => {
     mode: 'development',
     entry: {
       main: './src/js/index.js',
-      install: './src/js/install.js'
+      install: './src/js/install.js',
     },
     output: {
       filename: '[name].bundle.js',
@@ -23,59 +23,47 @@ module.exports = () => {
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: './src/index.html',
-        filename: 'index.html',
-        chunks: ['main'],
-      }),
-      new HtmlWebpackPlugin({
-        template: './src/install.html',
-        filename: 'install.html',
-        chunks: ['install'],
-      }),
+        template: './index.html',
+        title: 'Webpack plugin'
+      }), 
       new WebpackPwaManifest({
-        name: 'Budget Tracker',
-        short_name: 'Budget Tracker',
-        description: 'An application that allows you to track your budget online and offline.',
+        name: 'jate',
+        short_name: 'jate',
+        description: 'jate',
         background_color: '#ffffff',
-        crossorigin: 'use-credentials', //can be null, use-credentials or anonymous
+        theme_color: '#2v2v2v',
+        start_url: '/',
+        publicPath: '/',
+        inject: true,
+        fingerprints: false,
         icons: [
           {
-            src: path.resolve('src/icons/icon-512x512.png'),
-            sizes: [96, 128, 192, 256, 384, 512], // multiple sizes
+            src: path.resolve('src/images/logo.png'),
+            sizes: [96, 128, 192, 256, 384, 512],
+            destination: path.join('assets', 'icons'),
           },
-      
+        ],
+      }),
+      new InjectManifest({
+        swSrc: './src-sw.js', 
+        swDest: 'sw.js',
+       
+      }),
     ],
-  }),
-  new InjectManifest({
-    swSrc: './src-sw.js',
-    swDest: 'sw.js',
-  }),
-],
-
-
     module: {
       rules: [
         {
           test: /\.css$/i,
           use: ['style-loader', 'css-loader'],
-        },
-
+        }, 
         {
           test: /\.js$/,
           exclude: /node_modules/,
           use: {
             loader: 'babel-loader',
-            options: {
-              plugins: ['@babel/plugin-transform-runtime'],
-            },
           },
         },
-      
       ],
     },
   };
 };
-
-
-
-

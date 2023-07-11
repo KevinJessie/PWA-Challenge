@@ -12,28 +12,21 @@ const initdb = async () =>
     },
   });
 
-const saveRecord = async (record) => {
+export const putDb = async (content) => {
   const db = await initdb();
   const tx = db.transaction('jate', 'readwrite');
   const store = tx.objectStore('jate');
-  store.add(record);
+  const id = await store.put(content);
+  return id;
 }
 
-const getRecords = async () => {
+export const getDb = async (id) => {
   const db = await initdb();
   const tx = db.transaction('jate', 'readonly');
   const store = tx.objectStore('jate');
-  return store.getAll();
+  const content = await store.get(id);
+  return content;
 }
 
-const clearRecords = async () => {
-  const db = await initdb();
-  const tx = db.transaction('jate', 'readwrite');
-  const store = tx.objectStore('jate');
-  store.clear();
-}
-
-export { saveRecord, getRecords, clearRecords };
-
-
+initdb();
 
