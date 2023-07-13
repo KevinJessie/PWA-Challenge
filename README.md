@@ -27,7 +27,7 @@ npm run start:dev
 This project is licensed under the MIT license.
 
 ## Questions
-If you have any questions about the repo, open an issue or contact me directly at [${kevinjessie32@yahoo.com}](mailto:${email}). You can find more of my work at [${KevinJessie}].
+If you have any questions about the repo, open an issue or contact me directly at [${kevinjessie32@yahoo.com}](mailto:${email}). You can find more of my work at [${KevinJessie}](mailto:${github}) .
 
 `;
 
